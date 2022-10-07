@@ -19,3 +19,4 @@
         @endforeach
     </tbody>
 </table>
+<a href="{{ route('company.index') }}" style="margin-top: 40px; display: block"><< トップ画面に戻る（会社側）</a>

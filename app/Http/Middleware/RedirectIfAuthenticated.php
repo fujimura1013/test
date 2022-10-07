@@ -19,16 +19,15 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        // $guards = empty($guards) ? [null] : $guards;
-        // foreach ($guards as $guard) {
-        //     if ($guard == "web" && Auth::guard($guard)->check()) {
-        //         dd(8);
-        //         return redirect(route('user.index'));
-        //     }
-        //     // if ($guard == "companyUser" && Auth::guard($guard)->check()) {
-        //     //     return redirect(route('company.index'));
-        //     // }
-        // }
+        $guards = empty($guards) ? [null] : $guards;
+        foreach ($guards as $guard) {
+            if ($guard == "companyUser" && Auth::guard($guard)->check()) {
+                return redirect(route('company.index'));
+            }
+            if ($guard == "web" && Auth::guard($guard)->check()) {
+                return redirect(route('user.index'));
+            }
+        }
 
         return $next($request);
     }

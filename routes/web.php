@@ -53,6 +53,8 @@ Route::post('/company/job/category/delete/{id}', [CompanyController::class, 'cat
 Route::get('/company/entry', [CompanyController::class, 'entry'])->name('company.entry');
 Route::get('/company/entry/message/{id}', [CompanyController::class, 'message'])->name('company.entry.message');
 Route::post('/company/entry/message/{id}', [CompanyController::class, 'messageStore'])->name('company.entry.message.store');
+Route::get('/company/account', [CompanyController::class, 'account'])->name('company.account');
+Route::post('/company/account', [CompanyController::class, 'accountStore'])->name('company.account.store');
 
 Auth::routes(['verify' => true]);
 

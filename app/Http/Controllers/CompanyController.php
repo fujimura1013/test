@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Staff;
 use App\Models\Job;
 use App\Models\Message;
 use App\Models\Entry;
+use Illuminate\Support\Facades\Hash;
 
 class CompanyController extends Controller
 {
@@ -140,5 +142,28 @@ class CompanyController extends Controller
         $messageList->save();
 
         return redirect()->route('company.entry.message', compact('messageList', 'id'));
+    }
+
+    public function account()
+    {
+        $staffList = [];
+        
+        if (Staff::all() != null) {
+            $staffList = Staff::find(auth('companyUser')->user()->id)->get();
+        }
+
+        return view('company.account.index', compact('staffList'));
+    }
+    public function accountStore(Request $request)
+    {
+        $inputValues = $request->all();
+
+        $staffList = new Staff;
+        $staffList->company_id = auth('companyUser')->user()->id;
+        $staffList->email = $inputValues['email'];
+        $staffList->password = Hash::make($inputValues['password']);
+        $staffList->save();
+
+        return redirect()->route('company.account', compact('staffList'));
     }
 }

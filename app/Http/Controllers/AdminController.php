@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Company;
 use App\Models\CompanyUser;
 use App\Models\Job;
 use Illuminate\Support\Facades\Hash;

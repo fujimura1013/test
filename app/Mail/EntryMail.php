@@ -29,7 +29,7 @@ class EntryMail extends Mailable
      */
     public function build()
     {
-        // dd('送信');
+        dd('送信');
         return $this->to($this->email)
             ->subject('応募ありごと')
             ->view('mail.entry')
